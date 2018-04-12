@@ -18,7 +18,7 @@ class test_add_group(unittest.TestCase):
     def setUp(self):
         self.wd = WebDriver(capabilities={"marionette": False})
         self.wd.implicitly_wait(60)
-    
+    #Тест с заполненными данными
     def test_test_add_group(self):
         success = True
         wd = self.wd
@@ -29,7 +29,7 @@ class test_add_group(unittest.TestCase):
         self.open_group(wd)
         self.logout(wd)
         self.assertTrue(success)
-
+    #Тест с незаполненными полями
     def test_test_add_empty_group(self):
         success = True
         wd = self.wd
@@ -56,7 +56,6 @@ class test_add_group(unittest.TestCase):
         wd.find_element_by_name("group_footer").clear()
         wd.find_element_by_name("group_footer").send_keys(group.footer)
         wd.find_element_by_name("submit").click()
-
 
     def open_group(self, wd):
         wd.find_element_by_link_text("groups").click()
