@@ -2,7 +2,7 @@
 
 class Contakt:
 
-    def __init__(self, wd, firstname, midlname, lastname, nickname,
+    def __init__(self, firstname, midlname, lastname, nickname,
         titl, company, adress, home_num,
         mob_nomber, work_num, fax, mail1,
         mail2, mail3, homepage, beyer, ayer,
