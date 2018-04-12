@@ -18,10 +18,13 @@ class test_add_group(unittest.TestCase):
     def test_test_add_group(self):
         success = True
         wd = self.wd
+        #Открываем страницу
         wd.get("http://localhost/addressbook/")
+        # Заполняем поле user
         wd.find_element_by_name("user").click()
         wd.find_element_by_name("user").clear()
         wd.find_element_by_name("user").send_keys("admin")
+        # заполняем поле password
         wd.find_element_by_id("content").click()
         wd.find_element_by_name("pass").click()
         wd.find_element_by_name("pass").clear()
