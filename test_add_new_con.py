@@ -33,7 +33,7 @@ class test_add_new_cont (unittest.TestCase):
     def logout(self, wd):
         wd.find_element_by_link_text("Logout").click()
 
-    def add_new_cont(self, wd, Contact):
+    def add_new_cont(self, wd, Contakt):
         wd.find_element_by_xpath("//form[@id='LoginForm']/input[3]").click()
         wd.find_element_by_name("firstname").click()
         wd.find_element_by_name("firstname").clear()
@@ -89,26 +89,26 @@ class test_add_new_cont (unittest.TestCase):
             wd.find_element_by_xpath("//div[@id='content']/form/select[2]//option[3]").click()
         wd.find_element_by_name("byear").click()
         wd.find_element_by_name("byear").clear()
-        wd.find_element_by_name("byear").send_keys(beyer)
+        wd.find_element_by_name("byear").send_keys(Contakt.beyer)
         if not wd.find_element_by_xpath("//div[@id='content']/form/select[3]//option[12]").is_selected():
             wd.find_element_by_xpath("//div[@id='content']/form/select[3]//option[12]").click()
         if not wd.find_element_by_xpath("//div[@id='content']/form/select[4]//option[4]").is_selected():
             wd.find_element_by_xpath("//div[@id='content']/form/select[4]//option[4]").click()
         wd.find_element_by_name("ayear").click()
         wd.find_element_by_name("ayear").clear()
-        wd.find_element_by_name("ayear").send_keys(ayer)
+        wd.find_element_by_name("ayear").send_keys(Contakt.ayer)
         if not wd.find_element_by_xpath("//div[@id='content']/form/select[5]//option[4]").is_selected():
             wd.find_element_by_xpath("//div[@id='content']/form/select[5]//option[4]").click()
         wd.find_element_by_name("theform").click()
         wd.find_element_by_name("address2").click()
         wd.find_element_by_name("address2").clear()
-        wd.find_element_by_name("address2").send_keys(adress2)
+        wd.find_element_by_name("address2").send_keys(Contakt.adress2)
         wd.find_element_by_name("phone2").click()
         wd.find_element_by_name("phone2").clear()
-        wd.find_element_by_name("phone2").send_keys(home2)
+        wd.find_element_by_name("phone2").send_keys(Contakt.home2)
         wd.find_element_by_name("notes").click()
         wd.find_element_by_name("notes").clear()
-        wd.find_element_by_name("notes").send_keys(notes)
+        wd.find_element_by_name("notes").send_keys(Contakt.notes)
         wd.find_element_by_xpath("//div[@id='content']/form/input[21]").click()
 
     def login(self, wd, login, password):
