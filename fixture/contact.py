@@ -7,7 +7,6 @@ class ContactHelper:
 
     def add_new_cont(self, Contakt):
         wd = self.app.wd
-        #wd.find_element_by_css_selector("add new").click()
         wd.find_element_by_link_text("add new").click()
         #wd.find_element_by_xpath("//form[@id='LoginForm']/input[3]").click()
         wd.find_element_by_name("firstname").click()
