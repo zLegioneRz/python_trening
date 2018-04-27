@@ -14,15 +14,15 @@ def app(request):
 #Тест с заполненными данными
 
 def test_test_add_group(app):
-    app.login(username="admin", password="secret")
+    app.session.login(username="admin", password="secret")
     app.create_new_group(Group(group_name="first group", header="Testing", footer="My first group"))
-    app.logout()
+    app.session.logout()
 
 
     #Тест с незаполненными полями
 
 def test_test_add_empty_group(app):
-    app.login(username="admin", password="secret")
+    app.session.login(username="admin", password="secret")
     app.create_new_group(Group(group_name=" ", header=" ", footer=" "))
-    app.logout()
+    app.session.logout()
 
