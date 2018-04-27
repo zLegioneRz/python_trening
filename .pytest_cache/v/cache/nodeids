@@ -1,3 +1,4 @@
 [
-  "test_add_new_con.py::test_add_new_cont::test_add_new_cont"
+  "test_add_group.py::test_test_add_group",
+  "test_add_group.py::test_test_add_empty_group"
 ]
