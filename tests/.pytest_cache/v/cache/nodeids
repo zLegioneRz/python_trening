@@ -1,6 +1,3 @@
 [
-  "test_add_group.py::test_test_add_group",
-  "test_add_group.py::test_test_add_empty_group",
-  "test_add_new_con.py::test_add_new_cont",
-  "test_del_group.py::test_test_delete_first_group"
+  "test_modify_group.py::test_modify_group"
 ]
