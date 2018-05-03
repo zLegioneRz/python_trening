@@ -6,7 +6,7 @@ class Contakt:
         titl, company, adress, home_num,
         mob_nomber, work_num, fax, mail1,
         mail2, mail3, homepage, beyer, ayer,
-        adress2, home2, notes,firstname_new):
+        adress2, home2, notes):
         self.firstname =firstname
         self.midlname = midlname
         self.lastname=lastname
@@ -27,5 +27,4 @@ class Contakt:
         self.adress2 = adress2
         self.home2 = home2
         self.notes = notes
-        self.firstname_new = firstname_new
 
