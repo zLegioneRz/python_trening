@@ -22,7 +22,8 @@ class GroupHelper:
 
     def open_group(self):
         wd = self.app.wd
-        wd.find_element_by_link_text("groups").click()
+        wd.find_element_by_xpath("/html/body/div[1]/div[3]/ul/li[3]/a").click()
+        #wd.find_element_by_link_text("groups").click()
 
     def delete_first_group(self):
         wd = self.app.wd
