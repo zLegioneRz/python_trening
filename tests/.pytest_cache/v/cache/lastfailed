@@ -4,8 +4,5 @@
   "test_add_group.py::test_test_add_group": true,
   "test_add_new_con.py::test_add_new_cont": true,
   "test_del_first_cont.py::test_test_delete_first_contact": true,
-  "test_del_group.py::test_test_delete_first_group": true,
-  "test_modify_first_cont.py::test_test_delete_first_contact": true,
-  "test_modify_group.py": true,
-  "test_modify_group.py::test_modify_group": true
+  "test_del_group.py::test_test_delete_first_group": true
 }
