@@ -4,7 +4,6 @@ from model.contact import Contakt
 
 
 def test_add_new_cont(app):
-    app.session.login(username="admin", password="secret")
     app.contact.add_new_cont(Contakt(firstname="Test", midlname="testovich", lastname="Testov", nickname="Testikus",
                                      titl="Testi", company="Sirena-test", adress="1st test street", home_num="4",
                                      mob_nomber="7999999999", work_num="89999999999", fax="12", mail1="l@leg.er",

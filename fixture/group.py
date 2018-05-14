@@ -22,8 +22,8 @@ class GroupHelper:
 
     def open_group(self):
         wd = self.app.wd
-        #wd.find_element_by_xpath("/html/body/div[1]/div[3]/ul/li[3]/a").click()
-        wd.find_element_by_link_text("groups").click()
+        wd.find_element_by_xpath("//div[@id='nav']/ul//a[@href='group.php']").click()
+        #wd.find_element_by_link_text("groups").click()
 
     def delete_first_group(self):
         wd = self.app.wd
@@ -67,5 +67,9 @@ class GroupHelper:
         self.select_first_group()
         wd.find_element_by_xpath("/html/body/div[1]/div[4]/form/input[3]").click()
         self.fill_group_form(new_group_data)
-        wd.find_element_by_name("update").click()
-        self.open_group()
+        #wd.find_element_by_name("update").click()
+        self.return_group_page()
+
+    def return_group_page(self):
+        wd = self.app.wd
+        wd.find_element_by_xpath("/html//div[@id='content']//a[@href='group.php']").click()
