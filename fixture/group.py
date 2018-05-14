@@ -32,6 +32,7 @@ class GroupHelper:
         wd.find_element_by_name("selected[]").click()
         #Удалить первую группу
         wd.find_element_by_name("delete").click()
+        self.return_group_page()
 
     def modify_first_group(self, group):
         wd = self.app.wd
