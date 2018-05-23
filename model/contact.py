@@ -2,11 +2,11 @@
 
 class Contakt:
 
-    def __init__(self, firstname, midlname, lastname, nickname,
-        titl, company, adress, home_num,
-        mob_nomber, work_num, fax, mail1,
-        mail2, mail3, homepage, beyer, ayer,
-        adress2, home2, notes):
+    def __init__(self, firstname = None, midlname= None, lastname= None, nickname= None,
+        titl= None, company= None, adress= None, home_num= None,
+        mob_nomber= None, work_num= None, fax= None, mail1= None,
+        mail2= None, mail3= None, homepage= None, beyer= None, ayer= None,
+        adress2= None, home2= None, notes= None):
         self.firstname =firstname
         self.midlname = midlname
         self.lastname=lastname
