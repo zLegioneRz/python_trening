@@ -5,11 +5,20 @@ class ContactHelper:
     def __init__(self, app):
         self.app = app
 
+
+    def fill_fields_cont(self, field_name,text):
+        wd = self.app.wd
+        if text is not None:
+            wd.find_element_by_name(field_name).click()
+            wd.find_element_by_name(field_name).clear()
+            wd.find_element_by_name(field_name).send_keys(text)
+
     def add_new_cont(self, Contakt):
         wd = self.app.wd
         wd.find_element_by_link_text("add new").click()
         #wd.find_element_by_xpath("//form[@id='LoginForm']/input[3]").click()
         if Contakt.firstname is not None:
+            self.fill_fields_cont("firstname", Contakt.firstname)
             wd.find_element_by_name("firstname").click()
             wd.find_element_by_name("firstname").clear()
             wd.find_element_by_name("firstname").send_keys(Contakt.firstname)
@@ -80,18 +89,18 @@ class ContactHelper:
             wd.find_element_by_name("byear").click()
             wd.find_element_by_name("byear").clear()
             wd.find_element_by_name("byear").send_keys(Contakt.beyer)
+        if not wd.find_element_by_xpath("//div[@id='content']/form/select[3]//option[12]").is_selected():
+            wd.find_element_by_xpath("//div[@id='content']/form/select[3]//option[12]").click()
+        if not wd.find_element_by_xpath("//div[@id='content']/form/select[4]//option[4]").is_selected():
+            wd.find_element_by_xpath("//div[@id='content']/form/select[4]//option[4]").click()
         if Contakt.ayer is not None:
-            if not wd.find_element_by_xpath("//div[@id='content']/form/select[3]//option[12]").is_selected():
-                wd.find_element_by_xpath("//div[@id='content']/form/select[3]//option[12]").click()
-            if not wd.find_element_by_xpath("//div[@id='content']/form/select[4]//option[4]").is_selected():
-                wd.find_element_by_xpath("//div[@id='content']/form/select[4]//option[4]").click()
             wd.find_element_by_name("ayear").click()
             wd.find_element_by_name("ayear").clear()
             wd.find_element_by_name("ayear").send_keys(Contakt.ayer)
-        if Contakt.adress2 is not None:
-            if not wd.find_element_by_xpath("//div[@id='content']/form/select[5]//option[4]").is_selected():
-                wd.find_element_by_xpath("//div[@id='content']/form/select[5]//option[4]").click()
+        if not wd.find_element_by_xpath("//div[@id='content']/form/select[5]//option[4]").is_selected():
+            wd.find_element_by_xpath("//div[@id='content']/form/select[5]//option[4]").click()
             wd.find_element_by_name("theform").click()
+        if Contakt.adress2 is not None:
             wd.find_element_by_name("address2").click()
             wd.find_element_by_name("address2").clear()
             wd.find_element_by_name("address2").send_keys(Contakt.adress2)
@@ -126,7 +135,8 @@ class ContactHelper:
 
     def return_home_page(self):
         wd = self.app.wd
-        wd.find_element_by_xpath("//div[@id='nav']/ul//a[@href='./']").click()
+        if not (len(wd.find_elements_by_xpath("/html//table[@id='maintable']//a[@title='Sort on “Last name”']")) >0 and len(wd.find_elements_by_xpath("//div[@id='content']/form[@name='MainForm']//input[@value='Send e-Mail']")) > 0):
+            wd.find_element_by_xpath("//div[@id='nav']/ul//a[@href='./']").click()
 
     def count(self):
         wd = self.app.wd

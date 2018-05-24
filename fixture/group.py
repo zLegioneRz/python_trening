@@ -55,9 +55,12 @@ class GroupHelper:
 
     def fill_group_form(self, group):
         wd = self.app.wd
-        self.change_field_value("group_name", group.group_name)
-        self.change_field_value("group_header", group.header)
-        self.change_field_value("group_footer", group.footer)
+        if group.group_name is not None:
+            self.change_field_value("group_name", group.group_name)
+        if group.header is not None:
+            self.change_field_value("group_header", group.header)
+        if group.footer is not None:
+            self.change_field_value("group_footer", group.footer)
         wd.find_element_by_name("update").click()
 
     def change_field_value(self, field_name, text):
