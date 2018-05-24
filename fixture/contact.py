@@ -85,7 +85,7 @@ class ContactHelper:
         #wd.find_element_by_xpath("1")
         wd.find_element_by_xpath("//img[@title='Edit']").click()
         if firstname is not None:
-            self.fill_fields_cont("firstname",firstname)
+            self.fill_fields_cont("firstname", firstname)
         wd.find_element_by_xpath("/html/body/div[1]/div[4]/form[1]/input[1]").click()
 
     def return_home_page(self):

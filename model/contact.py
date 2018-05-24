@@ -7,12 +7,12 @@ class Contakt:
         mob_nomber= None, work_num= None, fax= None, mail1= None,
         mail2= None, mail3= None, homepage= None, beyer= None, ayer= None,
         adress2= None, home2= None, notes= None):
-        self.firstname =firstname
+        self.firstname = firstname
         self.midlname = midlname
-        self.lastname=lastname
-        self.nickname=nickname
-        self.titl=titl
-        self.company =company
+        self.lastname = lastname
+        self.nickname = nickname
+        self.titl = titl
+        self.company = company
         self.adress = adress
         self.home_num = home_num
         self.mob_nomber = mob_nomber
@@ -23,7 +23,7 @@ class Contakt:
         self.mail3 = mail3
         self.homepage = homepage
         self.beyer = beyer
-        self.ayer =ayer
+        self.ayer = ayer
         self.adress2 = adress2
         self.home2 = home2
         self.notes = notes
