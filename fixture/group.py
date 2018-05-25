@@ -1,4 +1,4 @@
-
+from model.group import Group
 
 class GroupHelper:
 
@@ -88,3 +88,13 @@ class GroupHelper:
         wd = self.app.wd
         #self.return_group_page()
         wd.find_element_by_xpath("/html//div[@id='content']//a[@href='group.php']").click()
+
+    def get_group_list(self):
+        wd = self.app.wd
+        self.open_group()
+        groups = []
+        for element in wd.find_elements_by_css_selector("span.group"):
+            text = element.text
+            id = element.find_element_by_name("selected[]").get_attribute("value")
+            groups.append(Group(group_name=text, id=id))
+        return groups
