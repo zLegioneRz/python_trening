@@ -1,4 +1,4 @@
-
+from model.contact import Contakt
 
 class ContactHelper:
 
@@ -97,3 +97,15 @@ class ContactHelper:
         wd = self.app.wd
         wd.find_element_by_xpath("//div[@id='nav']/ul//a[@href='./']").click()
         return len(wd.find_elements_by_xpath("//table[@id='maintable']/tbody/tr[2]"))
+
+    def get_contact_list(self):
+        wd = self.app.wd
+        self.return_home_page()
+        contact_list = []
+        for element in wd.find_elements_by_name("entry"):
+            last_name = element.find_element_by_xpath(".//td[2]").text
+            first_name = element.find_element_by_xpath(".//td[3]").text
+            id = element.find_element_by_name("selected[]").get_attribute("id")
+            contact_list.append(Contakt(lastname=last_name, firstname=first_name, id=id))
+        return contact_list
+
