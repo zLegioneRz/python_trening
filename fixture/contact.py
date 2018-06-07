@@ -71,6 +71,7 @@ class ContactHelper:
         if Contakt.notes is not None:
             self.fill_fields_cont("notes", Contakt.notes)
         wd.find_element_by_xpath("//div[@id='content']/form/input[21]").click()
+        self.contact_cache = None
 
 
     def delete_first_contact(self):
@@ -80,6 +81,7 @@ class ContactHelper:
         wd.find_element_by_xpath("/html/body/div[1]/div[4]/form[2]/div[2]/input").click()
         wd.switch_to_alert().accept()
         self.return_home_page()
+        self.contact_cache = None
 
     def modify_first_cont(self, firstname):
         wd = self.app.wd
@@ -91,6 +93,7 @@ class ContactHelper:
             self.fill_fields_cont("firstname", firstname)
         wd.find_element_by_xpath("/html/body/div[1]/div[4]/form[1]/input[1]").click()
         self.return_home_page()
+        self.contact_cache = None
 
 
     def return_home_page(self):
@@ -101,17 +104,20 @@ class ContactHelper:
 
     def count(self):
         wd = self.app.wd
-        wd.find_element_by_xpath("//div[@id='nav']/ul//a[@href='./']").click()
-        return len(wd.find_elements_by_xpath("//table[@id='maintable']/tbody/tr[2]"))
+        self.return_home_page()
+        return len(wd.find_elements_by_name("selected[]"))
+
+    contact_cache = None
 
     def get_contact_list(self):
-        wd = self.app.wd
-        self.return_home_page()
-        contact_list = []
-        for element in wd.find_elements_by_name("entry"):
-            last_name = element.find_element_by_css_selector("td:nth-of-type(2)").text
-            first_name = element.find_element_by_css_selector("td:nth-of-type(3)").text
-            id = element.find_element_by_name("selected[]").get_attribute("id")
-            contact_list.append(Contakt(lastname=last_name, firstname=first_name, id=id))
-        return contact_list
+        if self.contact_cache is None:
+            wd = self.app.wd
+            self.return_home_page()
+            self.contact_cache = []
+            for element in wd.find_elements_by_name("entry"):
+                last_name = element.find_element_by_css_selector("td:nth-of-type(2)").text
+                first_name = element.find_element_by_css_selector("td:nth-of-type(3)").text
+                id = element.find_element_by_name("selected[]").get_attribute("id")
+                self.contact_cache.append(Contakt(lastname=last_name, firstname=first_name, id=id))
+        return self.contact_cache
 

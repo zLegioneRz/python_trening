@@ -16,8 +16,8 @@ def test_test_modify_first_contact(app):
     if contact.lastname is None:
         contact.lastname = old_contact_list[0].lastname
     app.contact.modify_first_cont(contact.firstname)
+    assert len(old_contact_list) == app.contact.count()
     new_contact = app.contact.get_contact_list()
-    assert len(old_contact_list) == len(new_contact)
     old_contact_list[0] = contact
     # print(old_contact_list)
     # print(new_contact)
