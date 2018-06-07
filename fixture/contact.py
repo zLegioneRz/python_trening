@@ -88,7 +88,7 @@ class ContactHelper:
         #wd.find_element_by_xpath("1")
         wd.find_element_by_xpath("//img[@title='Edit']").click()
         if firstname is not None:
-            self.fill_fields_cont("firstname", firstname)
+            self.fill_fields_cont("firstname", "firstname")
         wd.find_element_by_xpath("/html/body/div[1]/div[4]/form[1]/input[1]").click()
         self.return_home_page()
 
@@ -108,8 +108,8 @@ class ContactHelper:
         self.return_home_page()
         contact_list = []
         for element in wd.find_elements_by_name("entry"):
-            last_name = element.find_element_by_xpath(".//td[2]").text
-            first_name = element.find_element_by_xpath(".//td[3]").text
+            last_name = element.find_element_by_xpath("//tr/td[2]").text
+            first_name = element.find_element_by_xpath("//tr/td[3]").text
             id = element.find_element_by_name("selected[]").get_attribute("id")
             contact_list.append(Contakt(lastname=last_name, firstname=first_name, id=id))
         return contact_list

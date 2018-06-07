@@ -1,4 +1,4 @@
-
+from sys import maxsize
 
 class Contakt:
 
@@ -34,3 +34,10 @@ class Contakt:
             return int(self.id)
         else:
             return maxsize
+
+    def __repr__(self):
+        return "[lastname= %s ; firstname= %s ; id= %s]" % (self.lastname, self.firstname, self.id)
+
+    def __eq__(self, other):
+        return (self.id is None or other.id is None or self.id == other.id) and self.lastname == other.lastname \
+               and self.firstname == other.firstname
