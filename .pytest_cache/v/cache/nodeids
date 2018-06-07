@@ -1,3 +1,8 @@
 [
-  "tests/test_add_group.py::test_test_add_group"
+  "tests/test_group_add.py::test_add_group[None:::]",
+  "tests/test_group_add.py::test_add_group[None:nameQdKi!:headerAlZ[P4benrz9XE:footerd{^CY=*rOhib`ixl ]",
+  "tests/test_group_add.py::test_add_group[None:name\"B}M0e :header |; J.:footerlQ){]",
+  "tests/test_group_add.py::test_add_group[None:name];B~S_#s4:headerk!R -N gq!// v\\\\MB T:footern[( wMq wk|/iq;$]",
+  "tests/test_group_add.py::test_add_group[None:name\"f xF:header\" Kn 92U~pa ^1{wtV,:footer2'Q~T?l_z[?BRr{Eq]",
+  "tests/test_group_add.py::test_add_group[None:name:headerYnl]LrtK :footerRG  (]"
 ]
