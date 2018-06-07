@@ -91,10 +91,13 @@ class ContactHelper:
         wd = self.app.wd
         wd.find_elements_by_name("selected[]")[index].click()
 
-    def modify_first_cont(self, firstname):
+    def modify_first_contact(self,index):
+        self.select_contact_by_index(0)
+
+    def modify_contact_by_index(self, index, firstname):
         wd = self.app.wd
         self.return_home_page()
-        self.select_contact_by_index()
+        self.select_contact_by_index(index)
         #wd.find_element_by_xpath("1")
         wd.find_element_by_xpath("//img[@title='Edit']").click()
         if firstname is not None:
