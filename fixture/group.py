@@ -28,6 +28,7 @@ class GroupHelper:
             wd.find_element_by_name("group_footer").clear()
             wd.find_element_by_name("group_footer").send_keys(group.footer)
         wd.find_element_by_name("submit").click()
+        self.group_cache =None
 
     def open_group(self):
         wd = self.app.wd
@@ -43,6 +44,7 @@ class GroupHelper:
         #Удалить первую группу
         wd.find_element_by_name("delete").click()
         self.return_group_page()
+        self.group_cache = None
 
     def modify_first_group(self, group):
         wd = self.app.wd
@@ -83,18 +85,22 @@ class GroupHelper:
         self.fill_group_form(new_group_data)
         #wd.find_element_by_name("update").click()
         self.return_group_page()
+        self.group_cache = None
 
     def return_group_page(self):
         wd = self.app.wd
         #self.return_group_page()
         wd.find_element_by_xpath("/html//div[@id='content']//a[@href='group.php']").click()
 
+    group_cache = None
+
     def get_group_list(self):
-        wd = self.app.wd
-        self.open_group()
-        groups = []
-        for element in wd.find_elements_by_css_selector("span.group"):
-            text = element.text
-            id = element.find_element_by_name("selected[]").get_attribute("value")
-            groups.append(Group(group_name=text, id=id))
-        return groups
+        if self.group_cache is None:
+            wd = self.app.wd
+            self.open_group()
+            groups = []
+            for element in wd.find_elements_by_css_selector("span.group"):
+                text = element.text
+                id = element.find_element_by_name("selected[]").get_attribute("value")
+                self.group_cache.append(Group(group_name=text, id=id))
+        return list(self.group_cache)
