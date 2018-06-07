@@ -13,4 +13,5 @@ def test_add_new_cont(app):
     app.contact.add_new_cont(contact)
     new_contact = app.contact.get_contact_list()
     assert len(old_contacts)+1 == len(new_contact)
-
+    old_contacts.append(contact)
+    assert sorted(old_contacts, key=Contakt.id_or_max) == sorted(new_contact, key=Contakt.id_or_max)

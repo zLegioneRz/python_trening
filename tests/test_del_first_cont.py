@@ -8,4 +8,9 @@ def test_test_delete_first_contact(app):
                                      mob_nomber="7999999999", work_num="89999999999", fax="12", mail1="l@leg.er",
                                      mail2="2@leg.er", mail3="1l@leg.er", homepage="home", beyer="1988", ayer="1981",
                                      adress2="2nd street", home2="42", notes="good job"))
+    old_contact_list = app.contact.get_contact_list()
     app.contact.delete_first_contact()
+    new_contact_list = app.contact.get_contact_list()
+    assert len(old_contact_list) - 1 == len(new_contact_list)
+    old_contact_list[0:1] = []
+    assert old_contact_list == new_contact_list
