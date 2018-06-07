@@ -1,5 +1,6 @@
 {
   "test_modify_first_cont.py::test_test_delete_first_contact": true,
+  "test_modify_first_cont.py::test_test_modify_first_contact": true,
   "test_modify_group.py::test_test_modify_group_footer": true,
   "test_modify_group.py::test_test_modify_group_header": true
 }

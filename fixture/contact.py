@@ -95,8 +95,9 @@ class ContactHelper:
 
     def return_home_page(self):
         wd = self.app.wd
-        if not (len(wd.find_elements_by_xpath("/html//table[@id='maintable']//a[@title='Sort on “Last name”']")) > 0 and len(wd.find_elements_by_xpath("//div[@id='content']/form[@name='MainForm']//input[@value='Send e-Mail']")) > 0):
-            wd.find_element_by_xpath("//div[@id='nav']/ul//a[@href='./']").click()
+        if not (wd.current_url.endswith("/addressbook/") and
+                len(wd.find_elements_by_xpath("//input[@value='Send e-Mail']")) > 0):
+            wd.find_element_by_link_text("home").click()
 
     def count(self):
         wd = self.app.wd
