@@ -1,4 +1,6 @@
 from model.contact import Contakt
+import re
+
 
 class ContactHelper:
 
@@ -82,7 +84,7 @@ class ContactHelper:
         wd = self.app.wd
         self.return_home_page()
         self.select_contact_by_index(index)
-        wd.find_element_by_xpath("/html/body/div[1]/div[4]/form[2]/div[2]/input").click()
+        wd.find_element_by_xpath("//input[@value='Delete']").click()
         wd.switch_to_alert().accept()
         self.return_home_page()
         self.contact_cache = None
@@ -125,15 +127,14 @@ class ContactHelper:
             wd = self.app.wd
             self.return_home_page()
             self.contact_cache = []
-            for element in wd.find_elements_by_name("entry"):
-                cells = element.find_elements_by_tag_name("td")
-                last_name = element.find_element_by_css_selector("td:nth-of-type(2)").text
-                first_name = element.find_element_by_css_selector("td:nth-of-type(3)").text
-                id = element.find_element_by_name("selected[]").get_attribute("id")
-                all_phones = cells[5].text.splitlines()
-                self.contact_cache.append(Contakt(lastname=last_name, firstname=first_name, id=id,
-                                                  home_num=all_phones[0], mob_nomber=all_phones[1],
-                                                  work_num=all_phones[2], fax=all_phones[3]))
+            for row in wd.find_elements_by_name("entry"):
+                cells = row.find_elements_by_tag_name("td")
+                lastname = cells[1].text
+                firstname = cells[2].text
+                id = cells[0].find_element_by_tag_name("input").get_attribute("id")
+                all_phones = cells[5].text
+                self.contact_cache.append(
+                    Contakt(firstname= firstname, lastname=lastname, id=id, all_phones_from_home_page=all_phones))
         return self.contact_cache
 
     def open_contact_to_edit_by_index(self, index):
@@ -147,20 +148,70 @@ class ContactHelper:
         wd = self.app.wd
         self.return_home_page()
         row = wd.find_elements_by_name("entry")[index]
-        cell = row.find_elements_by_tag_name("td")[6]
-        cell.find_element_by_tag_name("a").click()
+        cell = row.find_elements_by_tag_name('td')[6]
+        cell.find_element_by_tag_name('a').click()
+
+    def get_contact_from_home_page_by_index(self, index):
+        wd = self.app.wd
+        row = wd.find_elements_by_name("entry")[index]
+        cells = row.find_elements_by_tag_name("td")
+        lastname = cells[1].text
+        firstname = cells[2].text
+        id = row.find_element_by_name("selected[]").get_attribute("id")
+        address = cells[3].text
+        all_emails = cells[4].text
+        all_phones = cells[5].text
+        contact = Contakt(firstname=firstname, lastname=lastname, id=id,adress=address,
+                          all_phones_from_home_page=all_phones, all_emails_from_home_page=all_emails)
+        return contact
 
     def get_contact_info_from_edit_page(self, index):
         wd = self.app.wd
         self.open_contact_to_edit_by_index(index)
         firstname = wd.find_element_by_name("firstname").get_attribute("value")
         lastname = wd.find_element_by_name("lastname").get_attribute("value")
-        id = wd.find_element_by_name("id").get_attribute("value")
-        home_num = wd.find_element_by_name("home").get_attribute("value")
-        mob_nomber = wd.find_element_by_name("mobile").get_attribute("value")
-        work_num = wd.find_element_by_name("work").get_attribute("value")
-        fax = wd.find_element_by_name("phone2").get_attribute("value")
-        return Contakt(firstname=firstname,lastname=lastname,id=id,home_num=home_num,mob_nomber=mob_nomber,
-                       work_num=work_num ,fax=fax)
+        id = wd.find_element_by_name("id").get_attribute('value')
+        address = wd.find_element_by_name("address").get_attribute("value")
+        home_phone = wd.find_element_by_name("home").get_attribute("value")
+        work_phone = wd.find_element_by_name("work").get_attribute("value")
+        mobile_phone = wd.find_element_by_name("mobile").get_attribute("value")
+        fax = wd.find_element_by_name("fax").get_attribute("value")
+        secondary_phone = wd.find_element_by_name("phone2").get_attribute("value")
+        email = wd.find_element_by_name("email").get_attribute("value")
+        email2 = wd.find_element_by_name("email2").get_attribute("value")
+        email3 = wd.find_element_by_name("email3").get_attribute("value")
+        return Contakt(firstname=firstname, lastname=lastname, id=id,
+                       adress=address, home_num=home_phone,
+                       mail1=email, mail2=email2, mail3=email3, work_num=work_phone,
+                       mob_nomber=mobile_phone, fax=fax, home2=secondary_phone)
+
+    def get_contact_from_view_page(self, index):
+        wd = self.app.wd
+        self.open_contact_view_by_index(index)
+        text = wd.find_element_by_id("content").text
+        try:
+            home_num = re.search("H: (.*)", text).group(1)
+        except:
+            home_num = None
+        work_phone = re.search("W: (.*)", text).group(1)
+        mobile_phone = re.search("M: (.*)", text).group(1)
+        fax = re.search("F: (.*)", text).group(1)
+        secondary_phone = re.search("P: (.*)", text).group(1)
+        return Contakt(home_num=home_num, work_num=work_phone,
+                       mob_nomber=mobile_phone, fax=fax, home2=secondary_phone)
+
+    def clear(self, phone):
+        return re.sub("[() -]", "", phone)
 
 
+    def merge_phones_like_on_home_page(self, contact):
+        return "\n".join(filter(lambda x: x != "",
+                                (map(lambda x: self.clear(x),
+                                     filter(lambda x: x is not None,
+                                            [contact.home_num, contact.mob_nomber,
+                                             contact.work_num, contact.home2])))))
+
+    def merge_emails_like_on_home_page(self, contact):
+        return "\n".join(filter(lambda x: x != "",
+                                filter(lambda x: x is not None,
+                                       [contact.mail1, contact.mail2, contact.mail3])))

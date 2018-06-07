@@ -1,3 +1,4 @@
 [
-  "test_phones.py::test_phones_on_home_page"
+  "test_phones.py::test_phones_on_home_page",
+  "test_phones.py::test_phones_on_contact_view_page"
 ]
