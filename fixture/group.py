@@ -36,11 +36,14 @@ class GroupHelper:
             wd.find_element_by_link_text("groups").click()
         #wd.find_element_by_link_text("groups").click()
 
-    def delete_first_group(self):
+    def delete_group_by_index(self):
+        self.delete_group_by_index(0)
+
+    def delete_group_by_index(self,index):
         wd = self.app.wd
         self.open_group()
         #Выбрать первую группу
-        wd.find_element_by_name("selected[]").click()
+        self.select_group_group_by_index(index)
         #Удалить первую группу
         wd.find_element_by_name("delete").click()
         self.return_group_page()
@@ -76,11 +79,18 @@ class GroupHelper:
         wd = self.app.wd
         wd.find_element_by_name("selected[]").click()
 
+    def select_group_group_by_index(self, index):
+        wd = self.app.wd
+        wd.find_elements_by_name("selected[]")[index].click()
 
-    def modyfy_first_group_new(self, new_group_data):
+
+    def modyfy_first_group(self):
+        self.modyfy_group_by_index(0)
+
+    def modyfy_group_by_index(self,index, new_group_data):
         wd = self.app.wd
         self.open_group()
-        self.select_first_group()
+        self.select_group_group_by_index(index)
         wd.find_element_by_xpath("/html/body/div[1]/div[4]/form/input[3]").click()
         self.fill_group_form(new_group_data)
         #wd.find_element_by_name("update").click()
