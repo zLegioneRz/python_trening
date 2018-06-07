@@ -74,19 +74,27 @@ class ContactHelper:
         self.contact_cache = None
 
 
+
     def delete_first_contact(self):
+        self.delete_some_contact_by_index(0)
+
+    def delete_some_contact_by_index(self, index):
         wd = self.app.wd
         self.return_home_page()
-        wd.find_element_by_name("selected[]").click()
+        self.select_contact_by_index(index)
         wd.find_element_by_xpath("/html/body/div[1]/div[4]/form[2]/div[2]/input").click()
         wd.switch_to_alert().accept()
         self.return_home_page()
         self.contact_cache = None
 
+    def select_contact_by_index(self,index):
+        wd = self.app.wd
+        wd.find_elements_by_name("selected[]")[index].click()
+
     def modify_first_cont(self, firstname):
         wd = self.app.wd
         self.return_home_page()
-        wd.find_element_by_name("selected[]").click()
+        self.select_contact_by_index()
         #wd.find_element_by_xpath("1")
         wd.find_element_by_xpath("//img[@title='Edit']").click()
         if firstname is not None:
