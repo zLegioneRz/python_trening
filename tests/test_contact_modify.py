@@ -20,6 +20,6 @@ def test_test_modify_some_contact(app):
     assert len(old_contact_list) == app.contact.count()
     new_contact = app.contact.get_contact_list()
     old_contact_list[index] = contact
-    print(old_contact_list)
-    print(new_contact)
+    # print(old_contact_list)
+    # print(new_contact)
     assert sorted(old_contact_list, key=Contakt.id_or_max) == sorted(new_contact, key=Contakt.id_or_max)

@@ -1,6 +1,6 @@
 from model.contact import Contakt
 import re
-
+from selenium.webdriver.support.ui import Select
 
 class ContactHelper:
 
@@ -161,11 +161,11 @@ class ContactHelper:
         address = cells[3].text
         all_emails = cells[4].text
         all_phones = cells[5].text
-        contact = Contakt(firstname=firstname, lastname=lastname, id=id,adress=address,
+        contact = Contakt(firstname=firstname, lastname=lastname, id=id, adress2=address,
                           all_phones_from_home_page=all_phones, all_emails_from_home_page=all_emails)
         return contact
 
-    def get_contact_info_from_edit_page(self, index):
+    def get_contact_info_from_edit_page_by_index(self, index):
         wd = self.app.wd
         self.open_contact_to_edit_by_index(index)
         firstname = wd.find_element_by_name("firstname").get_attribute("value")
@@ -181,24 +181,36 @@ class ContactHelper:
         email2 = wd.find_element_by_name("email2").get_attribute("value")
         email3 = wd.find_element_by_name("email3").get_attribute("value")
         return Contakt(firstname=firstname, lastname=lastname, id=id,
-                       adress=address, home_num=home_phone,
+                       adress2=address, home_num=home_phone,
                        mail1=email, mail2=email2, mail3=email3, work_num=work_phone,
                        mob_nomber=mobile_phone, fax=fax, home2=secondary_phone)
 
-    def get_contact_from_view_page(self, index):
+    def get_contact_from_view_page_by_index(self, index):
         wd = self.app.wd
         self.open_contact_view_by_index(index)
         text = wd.find_element_by_id("content").text
         try:
-            home_num = re.search("H: (.*)", text).group(1)
+            home_phone = re.search("H: (.*)", text).group(1)
         except:
-            home_num = None
-        work_phone = re.search("W: (.*)", text).group(1)
-        mobile_phone = re.search("M: (.*)", text).group(1)
-        fax = re.search("F: (.*)", text).group(1)
-        secondary_phone = re.search("P: (.*)", text).group(1)
-        return Contakt(home_num=home_num, work_num=work_phone,
-                       mob_nomber=mobile_phone, fax=fax, home2=secondary_phone)
+            home_phone = None
+        try:
+            work_phone = re.search("W: (.*)", text).group(1)
+        except:
+            work_phone = None
+        try:
+            mobile_phone = re.search("M: (.*)", text).group(1)
+        except:
+            mobile_phone = None
+        try:
+            fax = re.search("F: (.*)", text).group(1)
+        except:
+            fax = None
+        try:
+            secondary_phone = re.search("P: (.*)", text).group(1)
+        except:
+            secondary_phone=None
+        return Contakt(home_num=home_phone, work_num=work_phone,
+                       mob_nomber=mobile_phone, fax = fax, home2=secondary_phone)
 
     def clear(self, phone):
         return re.sub("[() -]", "", phone)
