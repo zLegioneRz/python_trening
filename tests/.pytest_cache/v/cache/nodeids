@@ -5,6 +5,5 @@
   "test_del_first_cont.py::test_test_delete_first_contact",
   "test_del_group.py::test_test_delete_first_group",
   "test_modify_first_cont.py::test_test_modify_first_contact",
-  "test_modify_group.py::test_test_modify_group_name",
-  "test_modify_group_my.py::test_modify_group"
+  "test_modify_group.py::test_test_modify_group_name"
 ]
