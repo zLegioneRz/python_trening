@@ -1,8 +1,3 @@
 [
-  "tests/test_group_add.py::test_add_group[None:::]",
-  "tests/test_group_add.py::test_add_group[None:namenCA Nyg:headerS:footerV o8 &WK.ayEK]",
-  "tests/test_group_add.py::test_add_group[None:nameK:header-j:footer Y5h19]",
-  "tests/test_group_add.py::test_add_group[None:nameL:header3:footerlYHjV ]",
-  "tests/test_group_add.py::test_add_group[None:name (= KT:header#F @mi_:footer`WAk)]",
-  "tests/test_group_add.py::test_add_group[None:nameM.ASX:headerHauy!43aK{E ,_w @Df:footerwgY'07LkUZaq, y]"
+  "tests/test_contact_add_new.py::test_add_new_cont[[lastname= lastnamew ; firstname= firstname$Zp ; id= None]]"
 ]
