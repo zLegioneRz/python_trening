@@ -8,7 +8,7 @@ class Contakt:
         mail2= None, mail3= None, homepage= None, beyer= None, ayer= None,
         adress2= None, home2= None, notes= None, id= None, all_phones_from_home_page= None,
                  all_emails_from_home_page= None, birthday_month= None, year = None,
-                 anniversary_date =None, anniversary_month =None, birthday_date=None):
+                 anniversary_date =None, anniversary_month =None, birthday_date=None, all_phones_from_view_page=None):
 
         self.firstname = firstname
         self.midlname = midlname
@@ -38,6 +38,7 @@ class Contakt:
         self.anniversary_date = anniversary_date
         self.anniversary_month = anniversary_month
         self.birthday_date = birthday_date
+        self.all_phones_from_view_page = all_phones_from_view_page
 
     def id_or_max(self):
         if self.id:
