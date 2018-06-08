@@ -1,5 +1,6 @@
 {
   "tests/test_group_add.py::test_add_group": true,
+  "tests/test_group_add.py::test_add_group[None:name   51E:header/Ng6 I<?2Go_;u:footer :r \",TU]": true,
   "tests/test_group_add.py::test_add_group[None:name :header:footeri5lU1Xk  H6Pc V]": true,
   "tests/test_group_add.py::test_add_group[None:name :headerV0lp3TM17:footerHwhdGGcO2wvxVRv]": true,
   "tests/test_group_add.py::test_add_group[None:name rz  wo:headerx rJch VzxUow g:footer rEgE hyKJT F qDC]": true,
@@ -7,8 +8,11 @@
   "tests/test_group_add.py::test_add_group[None:name\"f xF:header\" Kn 92U~pa ^1{wtV,:footer2'Q~T?l_z[?BRr{Eq]": true,
   "tests/test_group_add.py::test_add_group[None:name85Lhk 3HT:headerNmNn uAkDm4hOFmD:footercRl 1B0 ]": true,
   "tests/test_group_add.py::test_add_group[None:name:headerIX v CxncjDD:footer]": true,
+  "tests/test_group_add.py::test_add_group[None:nameM.ASX:headerHauy!43aK{E ,_w @Df:footerwgY'07LkUZaq, y]": true,
   "tests/test_group_add.py::test_add_group[None:nameQLp :headerzQk aQoeSSE  D:footerKo  lgHlMaPf79 4]": true,
+  "tests/test_group_add.py::test_add_group[None:nameV^ :header XK'C%tTt( {@:footerz V[~\\\\%?Aya]": true,
   "tests/test_group_add.py::test_add_group[None:nameroyKb b  :headeroqnLswj6v ufCkNik82:footer MyD  K 6uX  ]": true,
+  "tests/test_group_add.py::test_add_group[None:namex r  ^:headergYeI%cXy:footers{t0B6 QPgd]": true,
   "tests/test_group_add.py::test_add_group[None:nameyEG  qPA:headeriV:footermGZ uFM3pvyY]": true,
   "tests/test_group_add.py::test_test_add_group": true
 }

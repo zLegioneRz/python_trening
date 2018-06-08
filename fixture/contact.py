@@ -7,75 +7,66 @@ class ContactHelper:
     def __init__(self, app):
         self.app = app
 
-    def fill_fields_cont(self, field_name, text):
+    def change_field_value(self, field_name, text):
         wd = self.app.wd
         if text is not None:
             wd.find_element_by_name(field_name).click()
             wd.find_element_by_name(field_name).clear()
             wd.find_element_by_name(field_name).send_keys(text)
 
-    def add_new_cont(self, Contakt):
+    def create_new_cont(self,Contakt):
         wd = self.app.wd
-        self.return_home_page()
-        wd.find_element_by_link_text("add new").click()
-        #wd.find_element_by_xpath("//form[@id='LoginForm']/input[3]").click()
-        if Contakt.firstname is not None:
-            self.fill_fields_cont("firstname", Contakt.firstname)
-        if Contakt.midlname is not None:
-            self.fill_fields_cont("middlename", Contakt.midlname)
-        if Contakt.lastname is not None:
-            self.fill_fields_cont("lastname", Contakt.lastname)
-        if Contakt.nickname is not None:
-            self.fill_fields_cont("nickname", Contakt.nickname)
-        if Contakt.titl is not None:
-            self.fill_fields_cont("title", Contakt.titl)
-        if Contakt.company is not None:
-            self.fill_fields_cont("company", Contakt.company)
-        if Contakt.adress is not None:
-            self.fill_fields_cont("address", Contakt.adress)
-        if Contakt.home_num is not None:
-            wd.find_element_by_name("theform").click()
-            self.fill_fields_cont("home", Contakt.home_num)
-        if Contakt.mob_nomber is not None:
-            wd.find_element_by_name("theform").click()
-            self.fill_fields_cont("mobile", Contakt.mob_nomber)
-        if Contakt.work_num is not None:
-            self.fill_fields_cont("work", Contakt.work_num)
-        if Contakt.fax is not None:
-            self.fill_fields_cont("fax", Contakt.fax)
-        if Contakt.mail1 is not None:
-            self.fill_fields_cont("email", Contakt.mail1)
-        if Contakt.mail2 is not None:
-            self.fill_fields_cont("email2", Contakt.mail2)
-        if Contakt.mail3 is not None:
-            self.fill_fields_cont("email3", Contakt.mail3)
-        if Contakt.homepage is not None:
-            self.fill_fields_cont("homepage", Contakt.homepage)
-        if Contakt.beyer is not None:
-            if not wd.find_element_by_xpath("//div[@id='content']/form/select[1]//option[9]").is_selected():
-                wd.find_element_by_xpath("//div[@id='content']/form/select[1]//option[9]").click()
-            if not wd.find_element_by_xpath("//div[@id='content']/form/select[2]//option[3]").is_selected():
-                wd.find_element_by_xpath("//div[@id='content']/form/select[2]//option[3]").click()
-            self.fill_fields_cont("byear", Contakt.beyer)
-        if not wd.find_element_by_xpath("//div[@id='content']/form/select[3]//option[12]").is_selected():
-            wd.find_element_by_xpath("//div[@id='content']/form/select[3]//option[12]").click()
-        if not wd.find_element_by_xpath("//div[@id='content']/form/select[4]//option[4]").is_selected():
-            wd.find_element_by_xpath("//div[@id='content']/form/select[4]//option[4]").click()
-        if Contakt.ayer is not None:
-            self.fill_fields_cont("ayear", Contakt.ayer)
-        if not wd.find_element_by_xpath("//div[@id='content']/form/select[5]//option[4]").is_selected():
-            wd.find_element_by_xpath("//div[@id='content']/form/select[5]//option[4]").click()
-            wd.find_element_by_name("theform").click()
-        if Contakt.adress2 is not None:
-            self.fill_fields_cont("address2", Contakt.adress2)
-        if Contakt.home2 is not None:
-            self.fill_fields_cont("phone2", Contakt.home2)
-        if Contakt.notes is not None:
-            self.fill_fields_cont("notes", Contakt.notes)
+        self.add_new_cont()
+        self.fill_contact_form(Contakt)
         wd.find_element_by_xpath("//div[@id='content']/form/input[21]").click()
         self.return_home_page()
         self.contact_cache = None
 
+    def fill_contact_form(self, Contakt):
+        wd = self.app.wd
+        #Name
+        self.change_field_value("firstname", Contakt.firstname)
+        self.change_field_value("middlename", Contakt.midlname)
+        self.change_field_value("lastname", Contakt.lastname)
+        self.change_field_value("nickname", Contakt.nickname)
+        # Company
+        self.change_field_value("title", Contakt.titl)
+        self.change_field_value("company", Contakt.company)
+        # Adress
+        self.change_field_value("address", Contakt.adress)
+        # Tel:
+        self.change_field_value("home", Contakt.home_num)
+        self.change_field_value("mobile", Contakt.mob_nomber)
+        self.change_field_value("work", Contakt.work_num)
+        self.change_field_value("fax", Contakt.fax)
+        # mail
+        self.change_field_value("email", Contakt.mail1)
+        self.change_field_value("email2", Contakt.mail2)
+        self.change_field_value("email3", Contakt.mail3)
+        self.change_field_value("homepage", Contakt.homepage)
+        # Date
+        self.pick_year_data("//select[@name='bday']", Contakt.birthday_date)
+        self.pick_year_data("//select[@name='bmonth']", Contakt.birthday_month)
+        self.change_field_value("byear", Contakt.beyer)
+        self.pick_year_data("//select[@name='aday']", Contakt.anniversary_date)
+        self.pick_year_data("//select[@name='amonth']", Contakt.anniversary_month)
+        self.change_field_value("ayear", Contakt.ayer)
+        # Adress
+        self.change_field_value("address2", Contakt.adress2)
+        self.change_field_value("phone2", Contakt.home2)
+        # Note
+        self.change_field_value("notes", Contakt.notes)
+
+    def pick_year_data(self, xpath_name, text):
+        wd = self.app.wd
+        if text is not None:
+            Select(wd.find_element_by_xpath(xpath_name)).select_by_value(text)
+
+
+    def add_new_cont(self):
+        wd = self.app.wd
+        self.return_home_page()
+        wd.find_element_by_link_text("add new").click()
 
 
     def delete_first_contact(self):
@@ -104,7 +95,7 @@ class ContactHelper:
         #wd.find_element_by_xpath("1")
         wd.find_element_by_xpath("//img[@title='Edit']").click()
         if firstname is not None:
-            self.fill_fields_cont("firstname", firstname)
+            self.change_field_value("firstname", firstname)
         wd.find_element_by_xpath("/html/body/div[1]/div[4]/form[1]/input[1]").click()
         self.return_home_page()
         self.contact_cache = None

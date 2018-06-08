@@ -2,11 +2,14 @@ from sys import maxsize
 
 class Contakt:
 
-    def __init__(self, firstname = None, midlname= None, lastname= None, nickname= None,
+    def __init__(self, firstname= None, midlname= None, lastname= None, nickname= None,
         titl= None, company= None, adress= None, home_num= None,
         mob_nomber= None, work_num= None, fax= None, mail1= None,
         mail2= None, mail3= None, homepage= None, beyer= None, ayer= None,
-        adress2= None, home2= None, notes= None, id= None, all_phones_from_home_page= None,all_emails_from_home_page= None, birthday_month= None, year = None, anniversary_date =None, anniversary_month =None):
+        adress2= None, home2= None, notes= None, id= None, all_phones_from_home_page= None,
+                 all_emails_from_home_page= None, birthday_month= None, year = None,
+                 anniversary_date =None, anniversary_month =None, birthday_date=None):
+
         self.firstname = firstname
         self.midlname = midlname
         self.lastname = lastname
@@ -34,6 +37,7 @@ class Contakt:
         self.year =  year
         self.anniversary_date = anniversary_date
         self.anniversary_month = anniversary_month
+        self.birthday_date = birthday_date
 
     def id_or_max(self):
         if self.id:
