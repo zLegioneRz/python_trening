@@ -12,6 +12,8 @@ class Application:
             self.wd = webdriver.Chrome("c:\Windows\System32\chromedriver.exe")
         elif browser == "ie":
             self.wd = webdriver.Ie("c:\Windows\System32\IEDriverServer.exe")
+        elif browser == "opera":
+            self.wd = webdriver.Opera("c:\Windows\System32\operadriver.exe")
         else:
             raise ValueError("Unrecognize browser %s" % browser)
         # self.wd.implicitly_wait(5)
