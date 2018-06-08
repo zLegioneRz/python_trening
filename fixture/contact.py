@@ -85,8 +85,7 @@ class ContactHelper:
         wd = self.app.wd
         wd.find_elements_by_name("selected[]")[index].click()
 
-    def modify_first_contact(self,index):
-
+    def modify_first_contact(self):
         self.select_edit_button_by_index(0)
 
     def select_edit_button_by_index(self,index):
@@ -96,15 +95,12 @@ class ContactHelper:
     def modify_contact_by_index(self, index, firstname):
         wd = self.app.wd
         self.return_home_page()
-        #self.select_contact_by_index(index)
-        #wd.find_element_by_xpath("1")
         self.select_edit_button_by_index(index)
-        #wd.find_elements_by_xpath("//img[@title='Edit']")(index).click()
-        if firstname is not None:
-            self.change_field_value("firstname", firstname)
-        wd.find_element_by_xpath("/html/body/div[1]/div[4]/form[1]/input[1]").click()
+        self.fill_contact_form(firstname)
+        wd.find_element_by_name("update").click()
+        # прейти на страницу с контактами
         self.return_home_page()
-        self.contact_cache = None
+        self.contact_cash = None
 
 
     def return_home_page(self):
