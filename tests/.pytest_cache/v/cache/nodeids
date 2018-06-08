@@ -1,3 +1,22 @@
 [
-  "test_phones.py::test_phones_on_contact_view_page"
+  "test_contact_add_new.py::test_contact_add[[lastname= Dspnm ; firstname= Sisrh ; id= None]]",
+  "test_contact_add_new.py::test_contact_add[[lastname= Exdyv ; firstname= Oeijt ; id= None]]",
+  "test_contact_add_new.py::test_contact_add[[lastname= Csytht ; firstname= Ufhv ; id= None]]",
+  "test_contact_add_new.py::test_contact_add[[lastname= Vlui ; firstname= Xugsws ; id= None]]",
+  "test_contact_add_new.py::test_contact_add[[lastname= Izvp ; firstname= Gwcdl ; id= None]]",
+  "test_contact_add_new.py::test_contact_add[[lastname=  ; firstname=  ; id= None]]",
+  "test_contact_del_cont.py::test_del_some_contact",
+  "test_contact_del_cont.py::test_del_first_contact",
+  "test_contact_modify.py::test_test_modify_some_contact",
+  "test_group_add.py::test_group_add[None:::]",
+  "test_group_add.py::test_group_add[None:namexQBYDJe:headerAcMpmmIrGHkB:footer]",
+  "test_group_add.py::test_group_add[None:namepV:headerVyN GouoDJ 1dP:footerHK zPLTe Ckcu]",
+  "test_group_add.py::test_group_add[None:nameIeKup:headerDr35pE:footerLHX OigQvgdVfd]",
+  "test_group_add.py::test_group_add[None:name09:header3 bM0:footerUP B z 5cBz7]",
+  "test_group_add.py::test_group_add[None:namev:header3O1 XanDn:footerOsfH0]",
+  "test_group_del.py::test_test_delete_some_group",
+  "test_group_modify.py::test_test_modify_group_name",
+  "test_phones.py::test_phones_on_home_page",
+  "test_phones.py::test_phones_on_contact_view_page",
+  "test_verify_contact_mail_and_address.py::test_verify_random_contact_on_home_page"
 ]

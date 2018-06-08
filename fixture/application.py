@@ -30,7 +30,7 @@ class Application:
     def destroy(self):
         self.wd.quit()
 
-    def is_valid(self):
+    def is_vald(self):
         try:
             self.wd.current_url
             return True

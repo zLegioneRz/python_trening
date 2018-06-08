@@ -43,7 +43,7 @@ def test_phones_on_home_page(app):
 
 def test_phones_on_contact_view_page(app):
     if app.contact.count() == 0:
-        app.contact.create_new(Contakt(firstname="New",
+        app.contact.create_new_cont(Contakt(firstname="New",
                                        home_num="849512345226",
                                        mob_nomber="22224806",
                                        work_num="222214806",
