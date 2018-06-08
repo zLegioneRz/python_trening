@@ -1,0 +1,6 @@
+{
+
+"os": {"type":"windows", "version":"8.1"},
+"brosser": {"type":"firefox", "version":"35.0.1"}
+
+}
