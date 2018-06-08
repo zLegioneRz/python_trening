@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from fixture.application import Application
+import pytest
 from model.contact import Contakt
 import random
 import string
@@ -9,13 +10,7 @@ def random_string(prefix,maxlen):
     symbols = string.ascii_letters + string.digits + string.punctuation + " "*10
     return prefix + "".join([random.choice(symbols) for i in range(random.randrange(maxlen))])
 
-testdata=[Contakt(firstname="", midlname="", lastname="", nickname="",
-                                     titl="", company="", adress="", home_num="",
-                                     mob_nomber="", work_num="", fax="", mail1="",
-                                     mail2="", mail3="", homepage="", beyer="", ayer="",
-                                     adress2="", home2="", notes="")] + [
-
-Contakt(firstname=random_string("firstname", 10), midlname=random_string("midlname", 10), lastname=random_string("lastname", 10), nickname=random_string("nickname", 10),
+testdata=[Contakt(firstname=random_string("firstname", 10), midlname=random_string("midlname", 10), lastname=random_string("lastname", 10), nickname=random_string("nickname", 10),
                                      titl=random_string("titl", 10), company=random_string("company", 10), adress=random_string("adress", 10), home_num=random_string("home_num", 10),
                                      mob_nomber=random_string("mob_nomber", 10), work_num=random_string("work_num", 10), fax=random_string("fax", 10), mail1=random_string("mail1", 10),
                                      mail2=random_string("mail2", 10), mail3=random_string("mail3", 10), homepage=random_string("homepage", 10), beyer=random_string("beyer", 10), ayer=random_string("ayer", 10),

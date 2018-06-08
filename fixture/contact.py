@@ -73,6 +73,7 @@ class ContactHelper:
         if Contakt.notes is not None:
             self.fill_fields_cont("notes", Contakt.notes)
         wd.find_element_by_xpath("//div[@id='content']/form/input[21]").click()
+        self.return_home_page()
         self.contact_cache = None
 
 
@@ -134,7 +135,7 @@ class ContactHelper:
                 id = cells[0].find_element_by_tag_name("input").get_attribute("id")
                 all_phones = cells[5].text
                 self.contact_cache.append(
-                    Contakt(firstname= firstname, lastname=lastname, id=id, all_phones_from_home_page=all_phones))
+                    Contakt(firstname=firstname, lastname=lastname, id=id, all_phones_from_home_page=all_phones))
         return self.contact_cache
 
     def open_contact_to_edit_by_index(self, index):
