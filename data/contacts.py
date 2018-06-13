@@ -1,4 +1,4 @@
-from model.contact import Contakt
+from model.contact import Contact
 import random
 import string
 
@@ -45,16 +45,38 @@ def get_random_months():
     return "".join([random.choice(months)])
 
 
-test_data = [Contakt(firstname=get_random_name(),midlname=get_random_name(),lastname=get_random_name(),
-                     nickname=get_random_name(),titl=get_random_name(), company=get_random_name(),
-                     adress=get_random_address(),home_num=get_random_string_digits(10, 11),
-                     mob_nomber=get_random_string_digits(10, 11), work_num=get_random_string_digits(10, 11),
-                     fax=get_random_string_digits(10, 11), mail1=get_random_email(), mail2=get_random_email(),
-                     mail3=get_random_email(), homepage=get_random_email(), birthday_date=get_random_day(),
-                     birthday_month=get_random_months(),beyer=get_random_year(), anniversary_date=get_random_day(),
-                     anniversary_month=get_random_months(),ayer=get_random_year(),adress2=get_random_address(),
-                     home2=get_random_string_digits(10, 11),notes=get_random_text(10)),
-
-             Contakt(firstname="", lastname="", adress="", home_num="", work_num="",
-                     mob_nomber="", home2="",
-                     mail1="", mail2="", mail3="")]
+test_data = [Contact(
+    # ФИО+nickname
+    firstname=get_random_name(),
+    middlename=get_random_name(),
+    lastname=get_random_name(),
+    nickname=get_random_name(),
+    # данные компании
+    title=get_random_name(),
+    company=get_random_name(),
+    # адресс 1
+    address=get_random_address(),
+    # телефоны
+    home_phone=get_random_string_digits(10, 11),
+    mobile_phone=get_random_string_digits(10, 11),
+    work_phone=get_random_string_digits(10, 11),
+    fax=get_random_string_digits(10, 11),
+    # почта
+    email=get_random_email(),
+    email2=get_random_email(),
+    email3=get_random_email(),
+    homepage=get_random_email(),
+    # выбор дат
+    birthday_date=get_random_day(),
+    birthday_month=get_random_months(),
+    byear=get_random_year(),
+    anniversary_date=get_random_day(),
+    anniversary_month=get_random_months(),
+    ayear=get_random_year(),
+    # адресс 2
+    address2=get_random_address(),
+    secondary_phone=get_random_string_digits(10, 11),
+    # заметка
+    notes=get_random_text(10)), Contact(firstname="", lastname="", address="", home_phone="", work_phone="",
+                                      mobile_phone="", secondary_phone="",
+                                      email="", email2="", email3="")]

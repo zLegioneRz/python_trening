@@ -1,24 +1,50 @@
-from random import randrange
-from model.contact import Contakt
+from model.contact import Contact
 
 
-def test_verify_random_contact_on_home_page(app):
-    if app.contact.count() == 0:
-        app.contact.add_new_cont(Contakt(firstname="Alex",midlname="",lastname="asdf", nickname="tester",
-                                         titl="sdaf", company="adsf-adsf",   adress="adsf",   home_num="32412341",
-                                         mob_nomber="123413243241",work_num="123413241324", fax="+12341234",
-                                         mail1="ldsf@inb33.ru", mail2="lu3322@1324.ru", mail3="123432@134.ru",
-                                       homepage="dsasadf.ru", beyer="1980", birthday_month="November",
-                                       year="1991", anniversary_date="31",anniversary_month="November", ayer="2000",
-                                         adress2="Россия",home2="199144654456",notes="testin test"
+def test_verify_random_contact_on_home_page(app, orm):
+    if len(orm.get_group_list()) == 0:
+        app.contact.create_new(Contact(
+            # ФИО+nickname
+            firstname="Ivanov",
+            middlename="",
+            lastname="Ivan",
+            nickname="tester",
+            # данные компании
+            title="junior",
+            company="sirena-testl",
+            # адресс 1
+            address="MSK",
+            # телефоны
+            home_phone="123654789",
+            mobile_phone="3214569875",
+            work_phone="7596845986",
+            fax="+7585852585",
+            # почта
+            email="ivanov@inbox.ru",
+            email2="ivanov2@inbox.ru",
+            email3="ivanov2@inbox.ru",
+            homepage="ivanov.ru",
+            # выбор дат
+            birthday_date="13",
+            birthday_month="November",
+            byear="1980",
+            anniversary_date="1",
+            anniversary_month="November",
+            ayear="2010",
+            # адресс 2
+            address2="Россия",
+            secondary_phone="199144654456",
+            # заметка
+            notes="testin test"
         ))
-    index = randrange(app.contact.count())
-    contact_from_home_page = app.contact.get_contact_from_home_page_by_index(index)
-    contact_from_edit_page = app.contact.get_contact_info_from_edit_page_by_index(index)
-    assert contact_from_home_page.firstname == contact_from_edit_page.firstname
-    assert contact_from_home_page.lastname == contact_from_edit_page.lastname
-    assert contact_from_home_page.adress == contact_from_edit_page.adress
-    assert contact_from_home_page.all_emails_from_home_page == \
-           app.contact.merge_emails_like_on_home_page(contact_from_edit_page)
-    assert contact_from_home_page.all_phones_from_home_page == \
-           app.contact.merge_phones_like_on_home_page(contact_from_edit_page)
+    contacts_ui = sorted(app.contact.get_contact_list(), key=Contact.id_or_max)
+    contacts_db = sorted(orm.get_contact_list(), key=Contact.id_or_max)
+    assert len(contacts_ui) == len(contacts_db)
+    for i in range(len(contacts_ui)):
+        assert contacts_ui[i].firstname == contacts_db[i].firstname
+        assert contacts_ui[i].lastname == contacts_db[i].lastname
+        assert contacts_ui[i].address == contacts_db[i].address
+        assert contacts_ui[i].all_emails_from_home_page == app.contact.merge_emails_like_on_home_page(contacts_db[i])
+        assert contacts_ui[i].all_phones_from_home_page == app.contact.merge_phones_like_on_home_page(contacts_db[i])
+
+

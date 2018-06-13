@@ -1,20 +1,14 @@
-
-
-
 class SessionHelper:
 
     def __init__(self, app):
         self.app = app
 
-    def login(self, username, password):
+    def login(self, user_name, password):
         wd = self.app.wd
-        # Заполняем поле user
-        self.app.open_home_page()
+        self.app.open_start_page()
         wd.find_element_by_name("user").click()
         wd.find_element_by_name("user").clear()
-        wd.find_element_by_name("user").send_keys(username)
-        # заполняем поле password
-        wd.find_element_by_id("content").click()
+        wd.find_element_by_name("user").send_keys(user_name)
         wd.find_element_by_name("pass").click()
         wd.find_element_by_name("pass").clear()
         wd.find_element_by_name("pass").send_keys(password)
@@ -34,15 +28,15 @@ class SessionHelper:
         wd = self.app.wd
         return len(wd.find_elements_by_link_text("Logout")) > 0
 
-    def ensure_login(self, username, password):
+    def ensure_login(self, user_name, password):
         wd = self.app.wd
         if self.is_logged_in():
-            if self.is_logged_in_as(username):
+            if self.is_logged_in_as(user_name):
                 return
             else:
                 self.logout()
-        self.login(username, password)
+        self.login(user_name, password)
 
-    def is_logged_in_as(self, username):
+    def is_logged_in_as(self, user_name):
         wd = self.app.wd
-        return wd.find_element_by_xpath("//div[@id='top']/form/b").text == "(" + username + ")"
+        return wd.find_element_by_xpath("//div[@id='top']/form/b").text == "(" + user_name + ")"

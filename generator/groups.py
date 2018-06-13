@@ -28,8 +28,14 @@ def random_string(prefix, max_len):
 
 
 # testdata
-test_data = [Group(group_name="", header="", footer="")] + [Group(group_name=random_string('name', 10),
+test_data = [Group(name="", header="", footer="")] + [Group(name=random_string('name', 10),
                                                             header=random_string('header', 20), footer=random_string('footer', 20)) for i in range(n)]
+
+# group_new = [Group(name=name, header=header, footer=footer)
+#              for name in ["", random_string('name', 10)]
+#              for header in ["", random_string('header', 10)]
+#              for footer in ["", random_string('footer', 10)]
+#              ]
 
 file = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', f)
 with open(file, 'w') as out:
